@@ -1,0 +1,54 @@
+:root{
+  --bg:#0f1720;
+  --panel:#0b1220;
+  --accent:#ff7a18;
+  --magma:#ff5b2e;
+  --mantle:#2b3a4a;
+  --crust:#6b6f78;
+  --text:#e6eef6;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, Arial, sans-serif;background:linear-gradient(180deg,#08101a 0%, #0b1726 100%);color:var(--text)}
+header{padding:24px 28px;border-bottom:1px solid rgba(255,255,255,0.03)}
+header h1{margin:0;font-size:20px}
+.subtitle{margin:6px 0 0;color:rgba(230,238,246,0.7)}
+main{display:flex;gap:18px;padding:20px}
+.controls{width:300px;background:rgba(255,255,255,0.02);padding:18px;border-radius:8px;border:1px solid rgba(255,255,255,0.02)}
+.controls label{display:block;margin-top:12px}
+input[type=range]{width:100%;margin-top:8px}
+.actions{margin-top:12px;display:flex;gap:8px}
+button{background:var(--accent);border:none;color:#fff;padding:8px 12px;border-radius:6px;cursor:pointer}
+button#reset{background:#394a57}
+.info{margin-top:12px;font-size:14px;line-height:1.4;color:rgba(230,238,246,0.9)}
+.canvas{flex:1;display:flex;align-items:center;justify-content:center}
+svg{max-width:100%;height:auto;border-radius:8px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+.mantle{fill:var(--mantle)}
+.crust{fill:var(--crust)}
+.slab{fill:#2e3b4a;opacity:0.9}
+.cone{fill:#2f2f33;stroke:#111;stroke-width:2}
+.magma{fill:var(--magma);transition:all 400ms ease}
+.conduit{fill:#3a2f25}
+.lava{fill:var(--magma);opacity:0;transition:opacity 250ms ease, transform 600ms ease}
+.label{fill:rgba(230,238,246,0.7);font-size:14px}
+.label.small{font-size:12px}
+.erupting .lava{opacity:1;transform-origin:470px 120px}
+
+/* eruption animation keyframes applied by JS */
+@keyframes lavaFlow {
+  0%{transform:translateY(-20px) scale(0.6)}
+  50%{transform:translateY(20px) scale(1.05)}
+  100%{transform:translateY(60px) scale(1.3);opacity:0.9}
+}
+.lava.animate{animation:lavaFlow 1s forwards}
+
+footer{padding:14px 28px;color:rgba(230,238,246,0.6);font-size:13px}
+
+@media (max-width:800px){main{flex-direction:column}.controls{width:100%}}
+
+/* scene visibility */
+.scene-hidden{display:none}
+
+/* river scene styling */
+#riverScene svg{box-shadow:none;border-radius:6px}
+#riverSVG #riverPath{transition:stroke-width 300ms ease, stroke 300ms ease, d 400ms ease}
+

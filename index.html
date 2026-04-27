@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Volcanoes — Feature & Process</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Volcanoes — Mantle Melting & Subduction</h1>
+    <p class="subtitle">Explore how subduction and mantle melting create volcanoes.</p>
+  </header>
+
+  <main>
+    <section class="controls" aria-labelledby="controls-title">
+      <h2 id="controls-title">Controls</h2>
+      <p id="explain">Choose a scene, adjust parameters, and run the simulation to see the process produce the feature.</p>
+
+      <div class="scene-selector">
+        <button class="scene-btn active" data-scene="volcano">Volcano</button>
+        <button class="scene-btn" data-scene="river">River</button>
+      </div>
+
+      <!-- Volcano controls -->
+      <div id="scene-volcano" class="scene-controls">
+        <label for="melt">Melting intensity</label>
+        <input id="melt" type="range" min="0" max="100" value="30" />
+
+        <div class="actions">
+          <button id="eruption">Erupt</button>
+          <button id="reset">Reset</button>
+        </div>
+
+        <div id="info" class="info"></div>
+      </div>
+
+      <!-- River controls (hidden until selected) -->
+      <div id="scene-river" class="scene-controls scene-hidden">
+        <label for="erosion">Erosion intensity</label>
+        <input id="erosion" type="range" min="0" max="100" value="40" />
+
+        <div class="actions">
+          <button id="simulateRiver">Simulate</button>
+          <button id="resetRiver">Reset</button>
+        </div>
+
+        <div id="infoRiver" class="info"></div>
+      </div>
+    </section>
+
+    <section class="canvas">
+      <svg id="volcano" viewBox="0 0 800 500" role="img" aria-label="Cross-section of a subduction zone and volcano">
+        <!-- mantle -->
+        <rect x="0" y="250" width="800" height="250" class="mantle" />
+
+        <!-- subducting slab -->
+        <path id="slab" d="M800 100 C700 150 600 200 450 260 L420 260 C560 160 700 120 800 100Z" class="slab" />
+
+        <!-- crust -->
+        <rect x="0" y="200" width="800" height="50" class="crust" />
+
+        <!-- volcano cone (surface) -->
+        <path d="M420 200 L520 200 L470 120 Z" class="cone" />
+
+        <!-- magma chamber (circle) -->
+        <g id="magmaGroup">
+          <ellipse id="magma" cx="470" cy="300" rx="45" ry="28" class="magma" />
+          <rect id="conduit" x="462" y="200" width="16" height="100" class="conduit" />
+        </g>
+
+        <!-- lava flow (hidden until eruption) -->
+        <path id="lava" d="M470 120 C480 150 520 180 540 200 L520 200 C500 180 470 150 470 120Z" class="lava" />
+
+        <!-- labels -->
+        <text x="20" y="280" class="label">Mantle</text>
+        <text x="20" y="220" class="label">Crust</text>
+        <text x="600" y="120" class="label small">Subducting slab</text>
+      </svg>
+    </section>
+
+    <!-- River scene canvas (initially hidden) -->
+    <section class="canvas scene-hidden" id="riverScene">
+      <svg id="riverSVG" viewBox="0 0 800 500" role="img" aria-label="Plan view of a meandering river">
+        <rect x="0" y="0" width="800" height="500" fill="#e9f6ff" />
+        <!-- floodplain -->
+        <g id="floodplain">
+          <rect x="0" y="0" width="800" height="500" fill="#e9f6ff" />
+        </g>
+
+        <!-- river path -->
+        <path id="riverPath" d="M40 250 C140 200 200 220 300 260 C420 310 480 270 580 260 C680 250 760 270 760 270" stroke="#2ca6ff" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+
+        <!-- labels -->
+        <text x="20" y="40" class="label">River meander — Erosion & Deposition</text>
+      </svg>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made for the eeps art project — interactive educational demo.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
