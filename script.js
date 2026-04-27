@@ -53,11 +53,13 @@ eruptionBtn.addEventListener('click', ()=>{
   // trigger eruption: animate lava streams and pool
   svg.classList.add('erupting');
   
-  // animate magma chamber pulse
+  // animate magma chamber expansion (using attribute changes, not transforms)
+  const originalRx = 45;
+  const originalRy = 28;
   magma.animate([
-    { transform: 'scale(1)', transformOrigin: '470px 300px' },
-    { transform: 'scale(1.4)' },
-    { transform: 'scale(1)' }
+    { rx: originalRx, ry: originalRy },
+    { rx: originalRx * 1.35, ry: originalRy * 1.35 },
+    { rx: originalRx, ry: originalRy }
   ], { duration: 1000, easing: 'ease-out' });
 
   // animate each lava stream with staggered timing
