@@ -12,6 +12,7 @@ html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, Aria
 header{padding:24px 28px;border-bottom:1px solid rgba(255,255,255,0.03)}
 header h1{margin:0;font-size:20px}
 .subtitle{margin:6px 0 0;color:rgba(230,238,246,0.7)}
+.piece-note{max-width:900px;margin:10px 0 0;color:rgba(230,238,246,0.82);line-height:1.5;font-size:14px}
 main{display:flex;gap:18px;padding:20px}
 .controls{width:300px;background:rgba(255,255,255,0.02);padding:18px;border-radius:8px;border:1px solid rgba(255,255,255,0.02)}
 .controls label{display:block;margin-top:12px}
