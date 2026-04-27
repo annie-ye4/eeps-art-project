@@ -74,11 +74,17 @@ footer{padding:14px 28px;color:rgba(230,238,246,0.6);font-size:13px}
 /* river scene styling */
 #riverScene svg{box-shadow:none;border-radius:6px}
 #riverSVG #riverPath{transition:stroke-width 300ms ease, stroke 300ms ease, d 400ms ease}
-.sediment-band{fill:none;stroke:#d9c28d;stroke-width:12;stroke-linecap:round;opacity:0.22}
-.sediment-band.faint{opacity:0.12;stroke-width:8}
-.cutbank{fill:none;stroke:#b38354;stroke-width:10;stroke-linecap:round;opacity:0.42}
-.point-bar{fill:url(#sandGradient);opacity:0.95}
-.rock{fill:#5b6670;stroke:#2f3942;stroke-width:2;opacity:0.95}
-.rock.small{opacity:0.8}
+.grass-zone{fill:none;stroke:#7a9b5c;stroke-width:18;stroke-linecap:round;opacity:0.35}
+.oxbow-lake{fill:#4a90c9;opacity:0.5;stroke:#2c5aa0;stroke-width:2}
+.oxbow-connection{fill:none;stroke:#4a90c9;stroke-width:2;opacity:0.4}
+.river-channel{fill:none;stroke:rgba(76,160,255,0.15);stroke-width:32;stroke-linecap:round;opacity:0.4}
+.water-shadow{fill:none;stroke:rgba(20,60,120,0.25);stroke-width:20;stroke-linecap:round}
+.flow-line{stroke:rgba(255,255,255,0.4);stroke-width:1.5;fill:none;stroke-dasharray:4,3}
+.water-surface{opacity:0.6}
+.cutbank{fill:none;stroke:#8b6f47;stroke-width:10;stroke-linecap:round;opacity:0.5}
+.point-bar{fill:url(#sandGradient);opacity:0.9}
+.rock{fill:#5b6670;stroke:#3d4450;stroke-width:2;opacity:0.92}
+.rock.small{opacity:0.78}
+.tree{fill:#5a8c3a;stroke:#3d5c24;stroke-width:1.5;opacity:0.75}
 
 
