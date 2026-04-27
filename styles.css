@@ -52,4 +52,11 @@ footer{padding:14px 28px;color:rgba(230,238,246,0.6);font-size:13px}
 /* river scene styling */
 #riverScene svg{box-shadow:none;border-radius:6px}
 #riverSVG #riverPath{transition:stroke-width 300ms ease, stroke 300ms ease, d 400ms ease}
+.sediment-band{fill:none;stroke:#d9c28d;stroke-width:12;stroke-linecap:round;opacity:0.22}
+.sediment-band.faint{opacity:0.12;stroke-width:8}
+.cutbank{fill:none;stroke:#b38354;stroke-width:10;stroke-linecap:round;opacity:0.42}
+.point-bar{fill:url(#sandGradient);opacity:0.95}
+.rock{fill:#5b6670;stroke:#2f3942;stroke-width:2;opacity:0.95}
+.rock.small{opacity:0.8}
+
 

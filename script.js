@@ -19,6 +19,7 @@ const simulateRiverBtn = document.getElementById('simulateRiver');
 const resetRiverBtn = document.getElementById('resetRiver');
 const infoRiver = document.getElementById('infoRiver');
 const riverPath = document.getElementById('riverPath');
+const rocks = document.querySelectorAll('#rocks .rock');
 
 
 function updateMelt(val){
@@ -103,10 +104,18 @@ function updateRiver(val){
   riverPath.style.stroke = `rgb(44, ${150 + Math.round(val/4)}, ${blueness})`;
 
   // informational text
-  let stage = 'Low erosion — river meanders slowly, banks stable.';
-  if(val > 35 && val <= 70) stage = 'Moderate erosion — cutbanks form and the channel migrates.';
-  if(val > 70) stage = 'High erosion — rapid migration and channel cutoff; oxbow lakes likely.';
+  let stage = 'Low erosion — river meanders slowly, but rocks still roughen the current and tug at the outside bends.';
+  if(val > 35 && val <= 70) stage = 'Moderate erosion — cobbles and rocks force the water to swirl harder, carving cutbanks and pushing sediment onto point bars.';
+  if(val > 70) stage = 'High erosion — the rocky channel becomes more turbulent, outer bends are undercut, and cutoff meanders become likely.';
   infoRiver.textContent = stage + ' (erosion intensity: ' + val + '%)';
+
+  // make the rocks feel more active as erosion rises
+  rocks.forEach((rock, index)=>{
+    const wobble = 1 + (val/100) * 0.12;
+    const lift = (index % 2 === 0 ? 1 : -1) * (val/100) * 3;
+    rock.setAttribute('transform', `translate(0 ${lift}) scale(${wobble})`);
+    rock.style.opacity = String(0.72 + (val/100) * 0.24);
+  });
 }
 
 simulateRiverBtn.addEventListener('click', ()=>{
@@ -127,6 +136,14 @@ simulateRiverBtn.addEventListener('click', ()=>{
     { transform: `translateX(${20 * (Number(erosion.value)/100)}px) scale(${sway})` },
     { transform: 'translateX(0px) scale(1)' }
   ], { duration: 1400, easing: 'ease-in-out' });
+
+  rocks.forEach((rock, index)=>{
+    rock.animate([
+      { transform: rock.getAttribute('transform') || 'translate(0 0) scale(1)' },
+      { transform: `translate(${(index % 2 === 0 ? -1 : 1) * 4}px ${-2 - (Number(erosion.value)/100) * 3}px) scale(1.08)` },
+      { transform: rock.getAttribute('transform') || 'translate(0 0) scale(1)' }
+    ], { duration: 1000 + index * 40, easing: 'ease-out' });
+  });
 });
 
 resetRiverBtn.addEventListener('click', ()=>{

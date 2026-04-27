@@ -83,17 +83,56 @@
     <!-- River scene canvas (initially hidden) -->
     <section class="canvas scene-hidden" id="riverScene">
       <svg id="riverSVG" viewBox="0 0 800 500" role="img" aria-label="Plan view of a meandering river">
+        <defs>
+          <linearGradient id="waterGradient" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="#6cd0ff" />
+            <stop offset="100%" stop-color="#1e84df" />
+          </linearGradient>
+          <linearGradient id="sandGradient" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stop-color="#f5e2b8" />
+            <stop offset="100%" stop-color="#e8cf91" />
+          </linearGradient>
+        </defs>
+
         <rect x="0" y="0" width="800" height="500" fill="#e9f6ff" />
-        <!-- floodplain -->
+
+        <!-- floodplain and subtle sediment texture -->
         <g id="floodplain">
           <rect x="0" y="0" width="800" height="500" fill="#e9f6ff" />
+          <path d="M0 380 C120 350 180 420 300 390 C420 360 520 430 640 400 C710 382 760 396 800 388" class="sediment-band" />
+          <path d="M0 120 C110 110 170 150 260 136 C360 120 460 170 570 148 C660 130 720 146 800 134" class="sediment-band faint" />
+        </g>
+
+        <!-- cutbanks on outside bends -->
+        <path d="M90 210 C140 175 190 175 235 205" class="cutbank" />
+        <path d="M365 300 C415 345 485 340 540 295" class="cutbank" />
+        <path d="M625 238 C675 202 720 202 760 230" class="cutbank" />
+
+        <!-- point bars where sediment drops on inside bends -->
+        <ellipse cx="210" cy="276" rx="45" ry="16" class="point-bar" />
+        <ellipse cx="506" cy="245" rx="52" ry="18" class="point-bar" />
+        <ellipse cx="702" cy="287" rx="42" ry="15" class="point-bar" />
+
+        <!-- rocks and cobbles that disturb flow and encourage erosion -->
+        <g id="rocks">
+          <circle cx="128" cy="230" r="8" class="rock" />
+          <circle cx="152" cy="243" r="5" class="rock small" />
+          <circle cx="245" cy="255" r="7" class="rock" />
+          <circle cx="278" cy="280" r="6" class="rock small" />
+          <circle cx="382" cy="260" r="9" class="rock" />
+          <circle cx="421" cy="286" r="6" class="rock small" />
+          <circle cx="575" cy="252" r="8" class="rock" />
+          <circle cx="606" cy="235" r="5" class="rock small" />
+          <circle cx="655" cy="276" r="7" class="rock" />
+          <circle cx="735" cy="266" r="6" class="rock small" />
         </g>
 
         <!-- river path -->
-        <path id="riverPath" d="M40 250 C140 200 200 220 300 260 C420 310 480 270 580 260 C680 250 760 270 760 270" stroke="#2ca6ff" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+        <path id="riverPath" d="M42 246 C98 206 140 196 188 214 C240 234 266 286 326 300 C396 316 444 262 490 238 C548 206 604 210 650 242 C694 271 726 290 760 286" stroke="url(#waterGradient)" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" />
 
         <!-- labels -->
-        <text x="20" y="40" class="label">River meander — Erosion & Deposition</text>
+        <text x="20" y="40" class="label">River meander — Erosion, deposition, and rock-filled bends</text>
+        <text x="20" y="64" class="label small">Rocks roughen the flow, making the river carve the outside bends more strongly.</text>
       </svg>
     </section>
   </main>
