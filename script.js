@@ -5,7 +5,10 @@ const info = document.getElementById('info');
 const eruptionBtn = document.getElementById('eruption');
 const resetBtn = document.getElementById('reset');
 const svg = document.getElementById('volcano');
-const lava = document.getElementById('lava');
+const lavaFlows = document.getElementById('lavaFlows');
+const lavaStreams = document.querySelectorAll('.lava-stream');
+const lavaPool = document.getElementById('lava-pool');
+const ashPuff = document.getElementById('ash-puff');
 
 // Scene controls
 const sceneButtons = document.querySelectorAll('.scene-btn');
@@ -47,25 +50,41 @@ melt.addEventListener('input', (e)=>{
 });
 
 eruptionBtn.addEventListener('click', ()=>{
-  // trigger eruption: animate lava and pulse magma
+  // trigger eruption: animate lava streams and pool
   svg.classList.add('erupting');
-  lava.classList.remove('animate');
-  // force reflow to restart animation
-  void lava.offsetWidth;
-  lava.classList.add('animate');
-
-  // make magma expand temporarily
+  
+  // animate magma chamber pulse
   magma.animate([
     { transform: 'scale(1)', transformOrigin: '470px 300px' },
-    { transform: 'scale(1.35)' },
+    { transform: 'scale(1.4)' },
     { transform: 'scale(1)' }
-  ], { duration: 900, easing: 'ease-out' });
+  ], { duration: 1000, easing: 'ease-out' });
+
+  // animate each lava stream with staggered timing
+  lavaStreams.forEach((stream, index) => {
+    stream.classList.remove('animate');
+    void stream.offsetWidth;
+    setTimeout(() => {
+      stream.classList.add('animate');
+    }, index * 80);
+  });
+
+  // animate the lava pool at the base
+  setTimeout(() => {
+    lavaPool.classList.remove('animate');
+    void lavaPool.offsetWidth;
+    lavaPool.classList.add('animate');
+  }, 150);
 
   // textual hint
   info.textContent = 'Eruption: magma ascended the conduit and lava flowed at the surface — a volcano is formed by mantle melting driven by subduction.';
 
-  // remove erupting class after animation
-  setTimeout(()=>{ svg.classList.remove('erupting'); lava.classList.remove('animate'); }, 1600);
+  // fade out eruption after animation
+  setTimeout(()=>{ 
+    svg.classList.remove('erupting');
+    lavaStreams.forEach(s => s.classList.remove('animate'));
+    lavaPool.classList.remove('animate');
+  }, 2000);
 });
 
 resetBtn.addEventListener('click', ()=>{

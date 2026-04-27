@@ -22,25 +22,47 @@ button{background:var(--accent);border:none;color:#fff;padding:8px 12px;border-r
 button#reset{background:#394a57}
 .info{margin-top:12px;font-size:14px;line-height:1.4;color:rgba(230,238,246,0.9)}
 .canvas{flex:1;display:flex;align-items:center;justify-content:center}
-svg{max-width:100%;height:auto;border-radius:8px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+svg{max-width:100%;height:auto;border-radius:8px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}\n#volcano{background:linear-gradient(180deg, #1a1f2e 0%, #0f1720 100%)}\n#riverSVG{background:linear-gradient(180deg, #e9f6ff 0%, #c8e6f5 100%)}
 .mantle{fill:var(--mantle)}
 .crust{fill:var(--crust)}
 .slab{fill:#2e3b4a;opacity:0.9}
-.cone{fill:#2f2f33;stroke:#111;stroke-width:2}
+
+/* volcano cone layers */
+.cone-base{fill:url(#coneGradient);stroke:#1a1a1d;stroke-width:1.5}
+.cone-middle{fill:#353539;opacity:0.7}
+.cone-highlight{fill:#4a4a4e;opacity:0.4}
+.crater-rim{fill:#1a1a1d;stroke:#0f0f11;stroke-width:1.5}
+.crater{fill:#0a0a0c}
+
 .magma{fill:var(--magma);transition:all 400ms ease}
 .conduit{fill:#3a2f25}
-.lava{fill:var(--magma);opacity:0;transition:opacity 250ms ease, transform 600ms ease}
+
+/* lava flows */
+#lavaFlows{opacity:0;transition:opacity 300ms ease}
+.lava-stream{stroke:url(#lavaGradient);stroke-width:3.5;fill:none;stroke-linecap:round}
+.lava-pool{fill:#ff4d1a;opacity:0}
+.ash-puff{fill:rgba(150,150,150,0);transition:fill 200ms ease}
+
+.erupting #lavaFlows{opacity:1}
+.erupting .ash-puff{fill:rgba(200,200,200,0.6)}
+
+/* eruption animation keyframes */
+@keyframes lavaStreamFlow {
+  0%{stroke-dashoffset:100;opacity:0.2}
+  20%{opacity:0.7}
+  100%{stroke-dashoffset:0;opacity:1}
+}
+.lava-stream.animate{animation:lavaStreamFlow 1.2s ease-in forwards;stroke-dasharray:100}
+
+@keyframes poolSpread {
+  0%{opacity:0;transform:scale(0.3)}
+  50%{opacity:0.8}
+  100%{opacity:1;transform:scale(1)}
+}
+.lava-pool.animate{animation:poolSpread 1.1s ease-out forwards;transform-origin:470px 210px}
+
 .label{fill:rgba(230,238,246,0.7);font-size:14px}
 .label.small{font-size:12px}
-.erupting .lava{opacity:1;transform-origin:470px 120px}
-
-/* eruption animation keyframes applied by JS */
-@keyframes lavaFlow {
-  0%{transform:translateY(-20px) scale(0.6)}
-  50%{transform:translateY(20px) scale(1.05)}
-  100%{transform:translateY(60px) scale(1.3);opacity:0.9}
-}
-.lava.animate{animation:lavaFlow 1s forwards}
 
 footer{padding:14px 28px;color:rgba(230,238,246,0.6);font-size:13px}
 

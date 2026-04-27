@@ -52,6 +52,17 @@
 
     <section class="canvas">
       <svg id="volcano" viewBox="0 0 800 500" role="img" aria-label="Cross-section of a subduction zone and volcano">
+        <defs>
+          <linearGradient id="coneGradient" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stop-color="#3d3d41" />
+            <stop offset="100%" stop-color="#262629" />
+          </linearGradient>
+          <linearGradient id="lavaGradient" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stop-color="#ff5b2e" />
+            <stop offset="100%" stop-color="#ff3a0f" />
+          </linearGradient>
+        </defs>
+
         <!-- mantle -->
         <rect x="0" y="250" width="800" height="250" class="mantle" />
 
@@ -61,17 +72,40 @@
         <!-- crust -->
         <rect x="0" y="200" width="800" height="50" class="crust" />
 
-        <!-- volcano cone (surface) -->
-        <path d="M420 200 L520 200 L470 120 Z" class="cone" />
+        <!-- layered volcano cone with slopes -->
+        <g id="coneGroup">
+          <!-- base layer -->
+          <path d="M380 200 L560 200 L470 80 Z" class="cone-base" />
+          <!-- middle layer (relief) -->
+          <path d="M395 200 L545 200 L470 100 Z" class="cone-middle" />
+          <!-- lighter slope for depth -->
+          <path d="M410 200 L530 200 L470 115 Z" class="cone-highlight" />
+        </g>
+
+        <!-- crater rim -->
+        <ellipse cx="470" cy="115" rx="16" ry="8" class="crater-rim" />
+        <circle cx="470" cy="115" r="10" class="crater" />
 
         <!-- magma chamber (circle) -->
         <g id="magmaGroup">
           <ellipse id="magma" cx="470" cy="300" rx="45" ry="28" class="magma" />
-          <rect id="conduit" x="462" y="200" width="16" height="100" class="conduit" />
+          <rect id="conduit" x="462" y="130" width="16" height="170" class="conduit" />
         </g>
 
-        <!-- lava flow (hidden until eruption) -->
-        <path id="lava" d="M470 120 C480 150 520 180 540 200 L520 200 C500 180 470 150 470 120Z" class="lava" />
+        <!-- lava flows (hidden until eruption) -->
+        <g id="lavaFlows">
+          <!-- main center flow -->
+          <path id="lava-center" d="M470 115 C468 145 465 175 460 200" class="lava-stream" />
+          <!-- left flow -->
+          <path id="lava-left" d="M464 120 C455 155 445 180 435 200" class="lava-stream" />
+          <!-- right flow -->
+          <path id="lava-right" d="M476 120 C485 155 495 180 510 200" class="lava-stream" />
+          <!-- spreading base -->
+          <path id="lava-pool" d="M435 200 L460 200 L470 210 L510 200 L485 200 Z" class="lava-pool" />
+        </g>
+
+        <!-- ash/gas puff (hidden until eruption) -->
+        <ellipse id="ash-puff" cx="470" cy="100" rx="12" ry="8" class="ash-puff" />
 
         <!-- labels -->
         <text x="20" y="280" class="label">Mantle</text>
